@@ -16,8 +16,8 @@
 	npm install         // 安装项目依赖，等待安装完成之后
 
 ## 启动mysql数据库
-   > 配置数据库配置文件（server/config）改成自己的
-   > 将vueadmin.sql文件倒入数据库
+> 配置数据库配置文件（server/config）改成自己的
+> 将vueadmin.sql文件倒入数据库
 ## 本地开发 ##
 	// 开启后端服务器，浏览器访问 http://localhost:3000，在根目录下执行下面命令
 	npm run start
