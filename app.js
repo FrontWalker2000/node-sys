@@ -1,16 +1,14 @@
-let createError = require('http-errors');
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
-let Jwt = require('../sever/jwt')
+let createError = require('http-errors'),
+    express = require('express'),
+    path = require('path'),
+    cookieParser = require('cookie-parser'),
+    logger = require('morgan'),
+    Jwt = require('./sever/jwt'),
+    indexRouter = require('./routes/index'),
+    usersRouter = require('./routes/users'),
+    app = express()
 
-let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
-
-let app = express();
-
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
@@ -18,7 +16,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 //解决跨域问题
 app.all('*', function (req, res, next) {
@@ -32,6 +29,7 @@ app.all('*', function (req, res, next) {
 app.use(function (req, res, next) {
     // 分离登陆路由
     if (req.url !== '/users/login') {
+        console.log(6666)
         let token = req.headers.token;
         let jwt = new Jwt(token);
         let result = jwt.verifyToken();
@@ -41,6 +39,7 @@ app.use(function (req, res, next) {
             next()
         }
     } else {
+        console.log(9999)
         next()
     }
 })
@@ -54,7 +53,6 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
-
     res.status(err.status || 500);
     res.render('error');
 });
