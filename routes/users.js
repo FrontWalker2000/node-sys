@@ -29,9 +29,9 @@ router.post('/login', function(req, res, next) {
       data: token,
       message: "操作成功"
     }
-    console.log(result)
     res.send(result);
   })
 });
+
 
 module.exports = router;
