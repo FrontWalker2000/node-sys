@@ -7,7 +7,6 @@ let insertSql = 'insert into user set ?'
 
 /* 登陆接口 */
 router.get('/login', function(req, res, next) {
-  console.log(req.query, 'get')
   handleSql(querySql, null,(response) => {
     let result = {
       status: 0,
@@ -32,6 +31,5 @@ router.post('/login', function(req, res, next) {
     res.send(result);
   })
 });
-
 
 module.exports = router;

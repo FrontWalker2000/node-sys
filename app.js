@@ -9,13 +9,13 @@ let createError = require('http-errors'),
     app = express()
 
 app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'jade');
+app.set('view engine', 'jade')
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(logger('dev'))
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'public')))
 
 //解决跨域问题
 app.all('*', function (req, res, next) {
@@ -29,12 +29,11 @@ app.all('*', function (req, res, next) {
 app.use(function (req, res, next) {
     // 分离登陆路由
     if (req.url !== '/users/login') {
-        console.log(6666)
-        let token = req.headers.token;
-        let jwt = new Jwt(token);
-        let result = jwt.verifyToken();
+        let token = req.headers.authorization
+        let jwt = new Jwt(token)
+        let result = jwt.verifyToken()
         if (result === 'err') {
-            res.send({status: 403, msg: '登录已过期,请重新登录'});
+            res.send({status: 403, msg: '登录已过期,请重新登录'})
         } else {
             next()
         }
@@ -43,18 +42,18 @@ app.use(function (req, res, next) {
         next()
     }
 })
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', indexRouter)
+app.use('/users', usersRouter)
 
 app.use(function (req, res, next) {
-    next(createError(404));
+    next(createError(404))
 });
 
 app.use(function (err, req, res, next) {
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-    res.status(err.status || 500);
-    res.render('error');
+    res.locals.message = err.message
+    res.locals.error = req.app.get('env') === 'development' ? err : {}
+    res.status(err.status || 500)
+    res.render('error')
 });
 
 app.listen(3000, () => {
