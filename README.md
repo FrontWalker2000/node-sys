@@ -9,7 +9,7 @@
 - [x] nodejs
 - [x] token
 - [x] mysql
-- [x] cookie
+- [x] redis
 ## 安装步骤 ##
 	https://github.com/FrontWalker2000/node-sys.git     // 把项目下载到本地
 	cd node-sys   // 进入项目目录
