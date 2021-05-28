@@ -13,7 +13,7 @@
 ## 安装步骤 ##
 	https://github.com/FrontWalker2000/node-sys.git     // 把项目下载到本地
 	cd node-sys   // 进入项目目录
-	npm install         // 安装项目依赖，等待安装完成之后
+	npm install   // 安装项目依赖，等待安装完成之后
 
 ## 启动mysql数据库
 ｜ 配置数据库配置文件（server/config）改成自己的

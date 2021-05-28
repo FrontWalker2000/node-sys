@@ -3,7 +3,6 @@ let router = express.Router();
 let Jwt = require('../sever/jwt')
 let handleSql = require('../sever/database')
 let querySql = 'select * from user'
-let insertSql = 'insert into user set ?'
 
 /* 登陆接口 */
 router.get('/login', function(req, res, next) {
